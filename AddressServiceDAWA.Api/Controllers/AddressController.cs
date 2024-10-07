@@ -15,7 +15,7 @@ namespace AddressServiceDAWA.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetAddressInfo/{addrress}")]
+        [Route("GetAddressInfo/{address}")]
         public async Task<string> GetAddressInfo([FromRoute] string address)
         {
             return await _addressService.GetAddressData(address);

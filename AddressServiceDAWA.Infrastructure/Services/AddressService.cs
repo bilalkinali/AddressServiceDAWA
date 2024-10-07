@@ -11,7 +11,7 @@
 
         async Task<string> IAddressService.GetAddressData(string address)
         {
-            return await _httpClient.GetStringAsync(@"address/{address}");
+            return await _httpClient.GetStringAsync($"address/{address}");
         }
     }
 }
