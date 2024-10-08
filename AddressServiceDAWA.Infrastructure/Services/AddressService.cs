@@ -19,7 +19,7 @@
                 if (result.IsSuccessStatusCode)
                     return await result.Content.ReadAsStringAsync();
 
-                // Status codes
+                // Status codes 
 
             }
             catch (Exception)
