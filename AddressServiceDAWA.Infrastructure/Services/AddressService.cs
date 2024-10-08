@@ -11,8 +11,24 @@
 
         async Task<string> IAddressService.GetAddressDataMini(string vejnavn, string husnr, string postnr)
         {
-            return await _httpClient.GetStringAsync(
-                $"adresser?vejnavn={vejnavn}&husnr={husnr}&postnr={postnr}&struktur=mini");
+            try
+            {
+                var result = await _httpClient.GetAsync(
+                        $"adresser?vejnavn={vejnavn}&husnr={husnr}&postnr={postnr}&struktur=mini");
+
+                if (result.IsSuccessStatusCode)
+                    return await result.Content.ReadAsStringAsync();
+
+                // Status codes
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return "";
         }
     }
 }
