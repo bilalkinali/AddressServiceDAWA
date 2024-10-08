@@ -2,6 +2,6 @@
 {
     public interface IAddressService
     {
-        Task<string> GetAddressData(string address);
+        Task<string> GetAddressDataMini(string vejnavn, string husnr, string postnr);
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AddressServiceDAWA.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/adresser")]
     [ApiController]
     public class AddressController : ControllerBase
     {
@@ -15,10 +15,10 @@ namespace AddressServiceDAWA.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetAddressInfo/{address}")]
-        public async Task<string> GetAddressInfo([FromRoute] string address)
+        //[Route("GetAddressInfo/{address}")]
+        public async Task<string> GetAddressInfo(string vejnavn, string husnr, string postnr)
         {
-            return await _addressService.GetAddressData(address);
+            return await _addressService.GetAddressDataMini(vejnavn, husnr, postnr);
         }
     }
 }

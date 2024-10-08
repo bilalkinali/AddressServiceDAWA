@@ -9,9 +9,10 @@
             _httpClient = httpClient;
         }
 
-        async Task<string> IAddressService.GetAddressData(string address)
+        async Task<string> IAddressService.GetAddressDataMini(string vejnavn, string husnr, string postnr)
         {
-            return await _httpClient.GetStringAsync($"address/{address}");
+            return await _httpClient.GetStringAsync(
+                $"adresser?vejnavn={vejnavn}&husnr={husnr}&postnr={postnr}&struktur=mini");
         }
     }
 }

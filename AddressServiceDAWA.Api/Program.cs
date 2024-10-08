@@ -12,9 +12,9 @@ builder.Services.AddControllers();
 // Configuration of HttpClient service
 builder.Services.AddHttpClient<IAddressService, AddressService>(client =>
 {
-    client.BaseAddress = new Uri("something"); // URI in appsettings
+    client.BaseAddress = new Uri("https://api.dataforsyningen.dk/"); // URI in appsettings
     client.DefaultRequestHeaders.Add("Accept", "application/json");
-    client.DefaultRequestHeaders.Add("User-agent", "HttpClientFactoryExample");
+    client.DefaultRequestHeaders.Add("User-agent", "DAWA Address Validation");
 });
 
 var app = builder.Build();
@@ -27,6 +27,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting(); // Add routing middleware
+app.MapControllers(); // Map the controllers to the app
 
 
 app.Run();
