@@ -32,4 +32,4 @@ app.UseRouting(); // Add routing middleware
 app.MapControllers(); // Map the controllers to the app
 
 
-app.Run();
+app.Run(); 
