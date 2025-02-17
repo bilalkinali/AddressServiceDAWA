@@ -1,0 +1,23 @@
+# https://www.programonaut.com/how-to-deploy-a-git-repository-to-a-server-using-github-actions/
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run_pull:
+    name: run pull
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: install ssh keys
+      # check this thread to understand why its needed:
+      # https://stackoverflow.com/a/70447517
+      run: 
+        install -m 600 -D /dev/null ~/home/ubuntu/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/home/ubuntu/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+    - name: connect and pull
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MASTER_BRANCH }} && git pull && exit"
+    - name: cleanup
+      run: rm -rf ~/home/ubuntu/.ssh
