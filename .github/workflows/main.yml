@@ -21,7 +21,7 @@ jobs:
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
     - name: Print authorized_keys contents
-      run: cat ~/.ssh/authorized_keys
+      run: cat /home/runner/.ssh/authorized_keys
 
     - name: Connect and pull changes
       run: |
