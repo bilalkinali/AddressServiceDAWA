@@ -18,13 +18,14 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-    #- name: Add new SSH key for local access
-    #  run: |
-    #    echo "PUBLIC_KEY_HERE" >> ~/.ssh/authorized_keys
+    
+    - name: Add new SSH key for local access
+      run: |
+        echo "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
     
     - name: connect and pull
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
-
+    
     - name: cleanup
       run: rm -rf ~/.ssh
